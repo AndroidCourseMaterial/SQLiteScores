@@ -22,6 +22,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+/**
+ * Activity that displays a list view of Names & Scores
+ * 
+ * @author fisherds
+ *
+ */
 public class ScoresListActivity extends Activity {
 
 	/**
@@ -29,7 +35,11 @@ public class ScoresListActivity extends Activity {
 	 */
 	private static final int DIALOG_ID = 1;
 
+	/**
+	 * The list view that fills the entire screen 
+	 */
 	private ListView mScoresListView;
+	
 	public static final long NEW_ENTRY = -1;
 	private long mEditingScoreId = NEW_ENTRY;
 
