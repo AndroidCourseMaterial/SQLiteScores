@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 /**
- * Activity that displays a list view of Names & Scores
+ * Activity that displays a list view of Names and Scores
  * Currently using no data storage
  * Need to add SQLite for data storage
  * 
@@ -272,8 +272,9 @@ public class ScoresListActivity extends ListActivity {
 			} else {
 				dialog.setTitle(R.string.update_score);
 				confirmButton.setText(R.string.update);
-				nameText.setText(mScores.get((int) mSelectedId).getName());
-				scoreText.setText("" + mScores.get((int) mSelectedId).getScore());
+				Score selectedScore = getScore(mSelectedId);
+				nameText.setText(selectedScore.getName());
+				scoreText.setText(""+selectedScore.getScore());
 			}
 			break;
 		}
