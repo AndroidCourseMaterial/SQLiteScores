@@ -1,2 +1,2 @@
 Starting point for a SQLite example.
-Will stores the name and score in a SQLite table.
+Stores names and scores in a SQLite table.
