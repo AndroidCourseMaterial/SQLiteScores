@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 /**
  * Activity that displays a list view of Names and Scores Currently using no
@@ -31,6 +32,9 @@ public class ScoresListActivity extends ListActivity {
 	// A ListActivity is an Activity that supports a ListView. Its layout must
 	// include a ListView (and optionally TextView for when the list is empty) with specific ids: see that file.
 
+	private ScoreDataAdapter mScoreDataAdapter;
+	private SimpleCursorAdapter mCursorAdapter;
+	
 	/**
 	 * TAG for debug log messages
 	 */
@@ -52,14 +56,18 @@ public class ScoresListActivity extends ListActivity {
 	 */
 	private long mSelectedId = NO_ID_SELECTED;
 
+	
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.scores_list_activity);
-		
-//		mScoreAdapter = new ArrayAdapter<Score>(this, android.R.layout.simple_list_item_1, mScores);
+
+		mScoreDataAdapter = new ScoreDataAdapter(this);
+		mScoreDataAdapter.open();
+
+		// mScoreAdapter = new ArrayAdapter<Score>(this,
+		// android.R.layout.simple_list_item_1, mScores);
 
 		// This is how a ListActivity sets the adapter, similar to how a ListView sets it.
 //		setListAdapter(mScoreAdapter); 
