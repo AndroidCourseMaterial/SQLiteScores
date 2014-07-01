@@ -12,4 +12,7 @@
 	<string name="app_name">SQLite Scores</string>
 	<string name="add_score">Add score</string>
 	<string name="update_score">Update score</string>
+	<string name="list_item_empty_name">Name</string>
+	<string name="list_item_empty_score">Score</string>
+	<string name="name_hint">Enter a name</string>
 </resources>
