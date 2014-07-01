@@ -52,7 +52,7 @@ public class ScoreDataAdapter {
 		mDatabase.close();
 	}
 
-	private ContentValues getConventValuesFromScore(Score score) {
+	private ContentValues getContentValuesFromScore(Score score) {
 		ContentValues row = new ContentValues();
 		row.put(KEY_NAME, score.getName());
 		row.put(KEY_SCORE, score.getScore());
@@ -67,7 +67,7 @@ public class ScoreDataAdapter {
 	 * @return id of the inserted row or -1 if failed
 	 */
 	public long addScore(Score score) {
-		ContentValues row = getConventValuesFromScore(score);
+		ContentValues row = getContentValuesFromScore(score);
 		return mDatabase.insert(TABLE_NAME, null, row);
 	}
 
