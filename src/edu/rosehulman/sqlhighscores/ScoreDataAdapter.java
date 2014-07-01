@@ -1,6 +1,6 @@
 package edu.rosehulman.sqlhighscores;
 
-public class SQLiteScoreAdapter {
+public class ScoreDataAdapter {
 	// Just the tag we use to log
 	private static final String TAG = "SQLiteScoreAdapter";
 	// Becomes the filename of the database
