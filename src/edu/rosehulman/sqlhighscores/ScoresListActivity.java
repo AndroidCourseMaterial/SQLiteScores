@@ -1,10 +1,8 @@
 package edu.rosehulman.sqlhighscores;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 import android.app.Dialog;
 import android.app.ListActivity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -15,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,11 +27,12 @@ import android.widget.SimpleCursorAdapter;
  */
 public class ScoresListActivity extends ListActivity {
 	// A ListActivity is an Activity that supports a ListView. Its layout must
-	// include a ListView (and optionally TextView for when the list is empty) with specific ids: see that file.
+	// include a ListView (and optionally TextView for when the list is empty)
+	// with specific ids: see that file.
 
 	private ScoreDataAdapter mScoreDataAdapter;
 	private SimpleCursorAdapter mCursorAdapter;
-	
+
 	/**
 	 * TAG for debug log messages
 	 */
@@ -56,8 +54,6 @@ public class ScoresListActivity extends ListActivity {
 	 */
 	private long mSelectedId = NO_ID_SELECTED;
 
-	
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,16 +62,18 @@ public class ScoresListActivity extends ListActivity {
 		mScoreDataAdapter = new ScoreDataAdapter(this);
 		mScoreDataAdapter.open();
 
-		// mScoreAdapter = new ArrayAdapter<Score>(this,
-		// android.R.layout.simple_list_item_1, mScores);
+		Cursor cursor = mScoreDataAdapter.getScoresCursor();
+		String[] fromColumns = new String[] { ScoreDataAdapter.KEY_NAME,
+				ScoreDataAdapter.KEY_SCORE };
+		int[] toTextViews = new int[] { R.id.textViewName, R.id.textViewScore };
+		mCursorAdapter = new SimpleCursorAdapter(this,
+				R.layout.score_list_item, cursor, fromColumns, toTextViews, 0);
+		// This is how a ListActivity sets the adapter, similar to how a
+		// ListView sets it.
+		setListAdapter(mCursorAdapter);
 
-		// This is how a ListActivity sets the adapter, similar to how a ListView sets it.
-//		setListAdapter(mScoreAdapter); 
-	
-		
-		
 		registerForContextMenu(getListView());
-		
+
 	}
 
 	/**
@@ -169,10 +167,12 @@ public class ScoresListActivity extends ListActivity {
 	 *            New score to add
 	 */
 	private void addScore(Score s) {
-//		mScores.add(s);
-//		Collections.sort(mScores);
-//		mScoreAdapter.notifyDataSetChanged();
+		// mScores.add(s);
+		// Collections.sort(mScores);
+		// mScoreAdapter.notifyDataSetChanged();
 		mScoreDataAdapter.addScore(s);
+		Cursor cursor = mScoreDataAdapter.getScoresCursor();
+		mCursorAdapter.changeCursor(cursor);
 	}
 
 	/**
@@ -182,7 +182,7 @@ public class ScoresListActivity extends ListActivity {
 	 *            Index of the score in the data storage mechanism
 	 */
 	private Score getScore(long id) {
-//		return mScores.get((int) id);
+		// return mScores.get((int) id);
 		return null;
 	}
 
@@ -200,8 +200,8 @@ public class ScoresListActivity extends ListActivity {
 		Score selectedScore = getScore(mSelectedId);
 		selectedScore.setName(s.getName());
 		selectedScore.setScore(s.getScore());
-//		Collections.sort(mScores);
-//		mScoreAdapter.notifyDataSetChanged();
+		// Collections.sort(mScores);
+		// mScoreAdapter.notifyDataSetChanged();
 	}
 
 	/**
@@ -211,9 +211,9 @@ public class ScoresListActivity extends ListActivity {
 	 *            Index of the score in the data storage mechanism
 	 */
 	private void removeScore(long id) {
-//		mScores.remove((int) id);
-//		Collections.sort(mScores);
-//		mScoreAdapter.notifyDataSetChanged();
+		// mScores.remove((int) id);
+		// Collections.sort(mScores);
+		// mScoreAdapter.notifyDataSetChanged();
 	}
 
 	// ======================================================================
