@@ -71,6 +71,8 @@ public class ScoresListActivity extends ListActivity {
 
 		// This is how a ListActivity sets the adapter, similar to how a ListView sets it.
 //		setListAdapter(mScoreAdapter); 
+	
+		
 		
 		registerForContextMenu(getListView());
 		
@@ -170,6 +172,7 @@ public class ScoresListActivity extends ListActivity {
 //		mScores.add(s);
 //		Collections.sort(mScores);
 //		mScoreAdapter.notifyDataSetChanged();
+		mScoreDataAdapter.addScore(s);
 	}
 
 	/**

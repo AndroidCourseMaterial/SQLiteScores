@@ -1,5 +1,6 @@
 package edu.rosehulman.sqlhighscores;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -20,7 +21,7 @@ public class ScoreDataAdapter {
 	private SQLiteOpenHelper mOpenHelper;
 	private SQLiteDatabase mDatabase;
 	// Android naming convention for IDs
-	public static final String KEY_ID = "_id"; 
+	public static final String KEY_ID = "_id";
 	public static final String KEY_NAME = "name";
 	public static final String KEY_SCORE = "score";
 
@@ -49,6 +50,25 @@ public class ScoreDataAdapter {
 	public void close() {
 		// Close the database
 		mDatabase.close();
+	}
+
+	private ContentValues getConventValuesFromScore(Score score) {
+		ContentValues row = new ContentValues();
+		row.put(KEY_NAME, score.getName());
+		row.put(KEY_SCORE, score.getScore());
+		return row;
+	}
+
+	/**
+	 * Add score to the table. If is successful, return the new id for that
+	 * Score, otherwise return -1.
+	 * 
+	 * @param score
+	 * @return id of the inserted row or -1 if failed
+	 */
+	public long addScore(Score score) {
+		ContentValues row = getConventValuesFromScore(score);
+		return mDatabase.insert(TABLE_NAME, null, row);
 	}
 
 	private static class ScoreDbHelper extends SQLiteOpenHelper {
