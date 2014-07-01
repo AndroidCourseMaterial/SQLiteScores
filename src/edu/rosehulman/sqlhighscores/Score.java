@@ -1,7 +1,7 @@
 package edu.rosehulman.sqlhighscores;
 
 /**
- * Our score data object.
+ * Score model object includes name and score.
  */
 public class Score implements Comparable<Score>{
     private String mName;
