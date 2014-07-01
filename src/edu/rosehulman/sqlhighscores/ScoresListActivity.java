@@ -52,17 +52,6 @@ public class ScoresListActivity extends ListActivity {
 	 */
 	private long mSelectedId = NO_ID_SELECTED;
 
-	/**
-	 * Array holding the scores
-	 */
-	private ArrayList<Score> mScores = new ArrayList<Score>();
-
-	/**
-	 * Adapter to fill the List View with mScores data Note: Could use the
-	 * ListActivity function getListAdapter, but that results in a lot of ugly
-	 * casting
-	 */
-	private ArrayAdapter<Score> mScoreAdapter;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -70,10 +59,10 @@ public class ScoresListActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.scores_list_activity);
 		
-		mScoreAdapter = new ArrayAdapter<Score>(this, android.R.layout.simple_list_item_1, mScores);
+//		mScoreAdapter = new ArrayAdapter<Score>(this, android.R.layout.simple_list_item_1, mScores);
 
 		// This is how a ListActivity sets the adapter, similar to how a ListView sets it.
-		setListAdapter(mScoreAdapter); 
+//		setListAdapter(mScoreAdapter); 
 		
 		registerForContextMenu(getListView());
 		
@@ -170,9 +159,9 @@ public class ScoresListActivity extends ListActivity {
 	 *            New score to add
 	 */
 	private void addScore(Score s) {
-		mScores.add(s);
-		Collections.sort(mScores);
-		mScoreAdapter.notifyDataSetChanged();
+//		mScores.add(s);
+//		Collections.sort(mScores);
+//		mScoreAdapter.notifyDataSetChanged();
 	}
 
 	/**
@@ -182,7 +171,8 @@ public class ScoresListActivity extends ListActivity {
 	 *            Index of the score in the data storage mechanism
 	 */
 	private Score getScore(long id) {
-		return mScores.get((int) id);
+//		return mScores.get((int) id);
+		return null;
 	}
 
 	/**
@@ -199,8 +189,8 @@ public class ScoresListActivity extends ListActivity {
 		Score selectedScore = getScore(mSelectedId);
 		selectedScore.setName(s.getName());
 		selectedScore.setScore(s.getScore());
-		Collections.sort(mScores);
-		mScoreAdapter.notifyDataSetChanged();
+//		Collections.sort(mScores);
+//		mScoreAdapter.notifyDataSetChanged();
 	}
 
 	/**
@@ -210,9 +200,9 @@ public class ScoresListActivity extends ListActivity {
 	 *            Index of the score in the data storage mechanism
 	 */
 	private void removeScore(long id) {
-		mScores.remove((int) id);
-		Collections.sort(mScores);
-		mScoreAdapter.notifyDataSetChanged();
+//		mScores.remove((int) id);
+//		Collections.sort(mScores);
+//		mScoreAdapter.notifyDataSetChanged();
 	}
 
 	// ======================================================================
