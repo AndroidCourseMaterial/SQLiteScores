@@ -19,8 +19,8 @@ public class ScoreDataAdapter {
 	// TODO: Implement a SQLite database
 	private SQLiteOpenHelper mOpenHelper;
 	private SQLiteDatabase mDatabase;
-	public static final String KEY_ID = "_id"; // Android naming convention for
-												// IDs
+	// Android naming convention for IDs
+	public static final String KEY_ID = "_id"; 
 	public static final String KEY_NAME = "name";
 	public static final String KEY_SCORE = "score";
 
