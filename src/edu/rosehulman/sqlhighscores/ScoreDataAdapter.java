@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class ScoreDataAdapter {
-	// Just the tag we use to log
-	private static final String TAG = "SQLiteScoreAdapter";
 	// Becomes the filename of the database
 	private static final String DATABASE_NAME = "scores.db";
 	// Only one table in this database
@@ -112,6 +110,20 @@ public class ScoreDataAdapter {
 		return removeScore(s.getId());
 	}
 
+	public void logAll() {
+		Cursor c = getScoresCursor();
+		if (c != null && c.moveToFirst()) {
+			Log.d(ScoresListActivity.SLS, "LOGGING TABLE");
+			while (!c.isAfterLast()) {
+				Score score = getScoreFromCursor(c);
+				Log.d(ScoresListActivity.SLS, score.toString());
+				c.moveToNext();
+			}
+		}
+	}
+
+	
+	
 	private static class ScoreDbHelper extends SQLiteOpenHelper {
 
 		public ScoreDbHelper(Context context) {
@@ -125,7 +137,7 @@ public class ScoreDataAdapter {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			Log.d(TAG, "Updating from version " + oldVersion + " to "
+			Log.d(ScoresListActivity.SLS, "Updating from version " + oldVersion + " to "
 					+ newVersion + ", which will destroy old table(s).");
 			db.execSQL(DROP_STATEMENT);
 			onCreate(db);

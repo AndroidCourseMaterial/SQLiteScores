@@ -36,7 +36,7 @@ public class ScoresListActivity extends ListActivity {
 	/**
 	 * TAG for debug log messages
 	 */
-	public static final String TAG = "Scores";
+	public static final String SLS = "Scores";
 
 	/**
 	 * Dialog ID for adding and editing scores (one dialog for both tasks)
@@ -173,6 +173,8 @@ public class ScoresListActivity extends ListActivity {
 		mScoreDataAdapter.addScore(s);
 		Cursor cursor = mScoreDataAdapter.getScoresCursor();
 		mCursorAdapter.changeCursor(cursor);
+		
+		mScoreDataAdapter.logAll();
 	}
 
 	/**
@@ -195,7 +197,7 @@ public class ScoresListActivity extends ListActivity {
 	 */
 	private void editScore(Score s) {
 		if (mSelectedId == NO_ID_SELECTED) {
-			Log.e(TAG, "Attempt to update with no score selected.");
+			Log.e(SLS, "Attempt to update with no score selected.");
 		}
 		s.setId((int) mSelectedId);
 		mScoreDataAdapter.updateScore(s);
