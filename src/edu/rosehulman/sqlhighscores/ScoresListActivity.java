@@ -219,6 +219,9 @@ public class ScoresListActivity extends ListActivity {
 		// mScores.remove((int) id);
 		// Collections.sort(mScores);
 		// mScoreAdapter.notifyDataSetChanged();
+		mScoreDataAdapter.removeScore(id);
+		Cursor cursor = mScoreDataAdapter.getScoresCursor();
+		mCursorAdapter.changeCursor(cursor);
 	}
 
 	// ======================================================================

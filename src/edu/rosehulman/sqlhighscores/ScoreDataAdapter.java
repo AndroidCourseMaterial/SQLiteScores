@@ -98,12 +98,20 @@ public class ScoreDataAdapter {
 		return s;
 	}
 
-public void updateScore(Score score) {
-	ContentValues row = getContentValuesFromScore(score);
-	String selection = KEY_ID + " = " + score.getId();
-	mDatabase.update(TABLE_NAME, row, selection, null);
-}
-	
+	public void updateScore(Score score) {
+		ContentValues row = getContentValuesFromScore(score);
+		String selection = KEY_ID + " = " + score.getId();
+		mDatabase.update(TABLE_NAME, row, selection, null);
+	}
+
+	public boolean removeScore(long id) {
+		return mDatabase.delete(TABLE_NAME, KEY_ID + " = " + id, null) > 0;
+	}
+
+	public boolean removeScore(Score s) {
+		return removeScore(s.getId());
+	}
+
 	private static class ScoreDbHelper extends SQLiteOpenHelper {
 
 		public ScoreDbHelper(Context context) {
