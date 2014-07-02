@@ -78,6 +78,32 @@ public class ScoreDataAdapter {
 				KEY_SCORE + " DESC");
 	}
 
+	public Score getScore(long id) {
+		String[] projection = new String[] { KEY_ID, KEY_NAME, KEY_SCORE };
+		String selection = KEY_ID + " = " + id;
+		boolean distinctRows = true;
+		Cursor c = mDatabase.query(distinctRows, TABLE_NAME, projection,
+				selection, null, null, null, null, null);
+		if (c != null && c.moveToFirst()) {
+			return getScoreFromCursor(c);
+		}
+		return null;
+	}
+
+	private Score getScoreFromCursor(Cursor c) {
+		Score s = new Score();
+		s.setId(c.getInt(c.getColumnIndexOrThrow(KEY_ID)));
+		s.setName(c.getString(c.getColumnIndexOrThrow(KEY_NAME)));
+		s.setScore(c.getInt(c.getColumnIndexOrThrow(KEY_SCORE)));
+		return s;
+	}
+
+public void updateScore(Score score) {
+	ContentValues row = getContentValuesFromScore(score);
+	String selection = KEY_ID + " = " + score.getId();
+	mDatabase.update(TABLE_NAME, row, selection, null);
+}
+	
 	private static class ScoreDbHelper extends SQLiteOpenHelper {
 
 		public ScoreDbHelper(Context context) {

@@ -183,7 +183,7 @@ public class ScoresListActivity extends ListActivity {
 	 */
 	private Score getScore(long id) {
 		// return mScores.get((int) id);
-		return null;
+		return mScoreDataAdapter.getScore(id);
 	}
 
 	/**
@@ -197,9 +197,14 @@ public class ScoresListActivity extends ListActivity {
 		if (mSelectedId == NO_ID_SELECTED) {
 			Log.e(TAG, "Attempt to update with no score selected.");
 		}
-		Score selectedScore = getScore(mSelectedId);
-		selectedScore.setName(s.getName());
-		selectedScore.setScore(s.getScore());
+		s.setId((int) mSelectedId);
+		mScoreDataAdapter.updateScore(s);
+		Cursor cursor = mScoreDataAdapter.getScoresCursor();
+		mCursorAdapter.changeCursor(cursor);
+
+		// Score selectedScore = getScore(mSelectedId);
+		// selectedScore.setName(s.getName());
+		// selectedScore.setScore(s.getScore());
 		// Collections.sort(mScores);
 		// mScoreAdapter.notifyDataSetChanged();
 	}
