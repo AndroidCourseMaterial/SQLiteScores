@@ -59,16 +59,16 @@ public class ScoreDataAdapter {
 	}
 
 	/**
-	 * Add score to the table. If is successful, return the new id for that
-	 * Score, otherwise return -1.
-	 * 
+	 * Add score to the table. 
 	 * @param score
 	 * @return id of the inserted row or -1 if failed
 	 */
-	public long addScore(Score score) {
-		ContentValues row = getContentValuesFromScore(score);
-		return mDatabase.insert(TABLE_NAME, null, row);
-	}
+public long addScore(Score score) {
+	ContentValues row = getContentValuesFromScore(score);
+	long rowId = mDatabase.insert(TABLE_NAME, null, row);
+	score.setId(rowId);
+	return rowId;
+}
 
 	public Cursor getScoresCursor() {
 		String[] projection = new String[] { KEY_ID, KEY_NAME, KEY_SCORE };

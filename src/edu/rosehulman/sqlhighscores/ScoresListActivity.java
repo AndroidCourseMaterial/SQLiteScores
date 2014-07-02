@@ -36,7 +36,7 @@ public class ScoresListActivity extends ListActivity {
 	/**
 	 * TAG for debug log messages
 	 */
-	public static final String SLS = "Scores";
+	public static final String SLS = "SLS";
 
 	/**
 	 * Dialog ID for adding and editing scores (one dialog for both tasks)
@@ -173,7 +173,6 @@ public class ScoresListActivity extends ListActivity {
 		mScoreDataAdapter.addScore(s);
 		Cursor cursor = mScoreDataAdapter.getScoresCursor();
 		mCursorAdapter.changeCursor(cursor);
-		
 		mScoreDataAdapter.logAll();
 	}
 

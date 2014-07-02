@@ -19,5 +19,5 @@ public class Score implements Comparable<Score>{
     
     public int compareTo(Score other) { return other.getScore() - getScore(); }
     
-    public String toString() { return getName() + " " + getScore(); }
+    public String toString() { return getId() + " " + getName() + " " + getScore(); }
 }
